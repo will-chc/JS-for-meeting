@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            Function.prototype.myCall = function(context){
+    //this指向调用myCall的对象（即虚拟的方法）
+    //context 为改变后this的指向
+    //如果不传入参数 this指向为window
+    context = context || Window
+    context.say = this;//this 为虚拟say方法
+    context.say();
+}
+let Person = {
+    name: 'Tom',
+    say() {
+        console.log(`我叫${this.name}`)
+    }
+}
+
+
+let Person1 = {
+    name: 'Tom1'
+}
+
+Person.say.myCall() ;
+        </script>
+    </body>
+</html>
